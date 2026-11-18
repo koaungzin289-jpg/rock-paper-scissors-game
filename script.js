@@ -27,16 +27,29 @@ const playRound = (computerSelection, humanSelection) => {
     humanScore++;
   } else if (computerSelection === "scissors" && humanSelection === "paper") {
     computerScore++;
-  } else {
-    humanScore = 0;
-    computerScore = 0;
   }
   console.log("Computer :" + computerSelection);
   console.log("Human :" + humanSelection);
   console.log("humanScore:" + humanScore);
   console.log("computerScore:" + computerScore);
 };
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
 
-playRound(computerSelection, humanSelection);
+let round = 1;
+const playGame = () => {
+  console.log(`Round : ${round}`);
+  const computerSelection = getComputerChoice();
+  const humanSelection = getHumanChoice();
+  playRound(computerSelection, humanSelection);
+  if (round === 5) {
+    if (computerScore > humanScore) {
+      console.log("Computer win");
+    } else if (computerScore < humanScore) {
+      console.log("Human Win");
+    } else {
+      console.log("Draw");
+    }
+    humanScore = 0;
+    computerScore = 0;
+  }
+  round++;
+};
