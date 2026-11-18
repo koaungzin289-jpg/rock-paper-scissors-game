@@ -38,14 +38,14 @@ const playRound = (humanSelection, computerSelection) => {
   }
 };
 
-let round = 1;
+let roundCount = 1;
 const playGame = () => {
-  console.log(`Round : ${round}`);
+  console.log(`Round : ${roundCount}`);
   const computerSelection = getComputerChoice();
   const humanSelection = getHumanChoice().toLocaleLowerCase();
   playRound(humanSelection, computerSelection);
-  if (round === 5) {
-    round = 0;
+  if (roundCount === 5) {
+    roundCount = 0;
     if (computerScore > humanScore) {
       console.log("Computer win");
     } else if (computerScore < humanScore) {
@@ -56,7 +56,7 @@ const playGame = () => {
     humanScore = 0;
     computerScore = 0;
   }
-  round++;
+  roundCount++;
 };
 for (let i = 0; i < 5; i++) {
   playGame();
