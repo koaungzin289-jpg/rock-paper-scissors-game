@@ -2,7 +2,7 @@ const getComputerChoice = () => {
   const num = Math.random();
   if (num < 1 / 3) {
     return "rock";
-  } else if (num < 1 / 2) {
+  } else if (num < 2 / 3) {
     return "paper";
   } else {
     return "scissors";
@@ -14,33 +14,38 @@ const getHumanChoice = () => {
 };
 let humanScore = 0;
 let computerScore = 0;
-const playRound = (computerSelection, humanSelection) => {
+const playRound = (humanSelection, computerSelection) => {
   if (computerSelection === "rock" && humanSelection === "paper") {
     humanScore++;
+    console.log(" You Win! Paper beats Rock");
   } else if (computerSelection === "rock" && humanSelection === "scissors") {
     computerScore++;
+    console.log(" You lose! Rock beats Scissors");
   } else if (computerSelection === "paper" && humanSelection === "rock") {
     computerScore++;
+    console.log(" You lose! Paper beats Rock");
   } else if (computerSelection === "paper" && humanSelection === "scissors") {
     humanScore++;
+    console.log(" You Win! Scissors beats Paper");
   } else if (computerSelection === "scissors" && humanSelection === "rock") {
     humanScore++;
+    console.log(" You Win! Rock beats Scissors");
   } else if (computerSelection === "scissors" && humanSelection === "paper") {
     computerScore++;
+    console.log(" You Lose! Scissors beats Paper");
+  } else {
+    console.log("It's tie.");
   }
-  console.log("Computer :" + computerSelection);
-  console.log("Human :" + humanSelection);
-  console.log("humanScore:" + humanScore);
-  console.log("computerScore:" + computerScore);
 };
 
 let round = 1;
 const playGame = () => {
   console.log(`Round : ${round}`);
   const computerSelection = getComputerChoice();
-  const humanSelection = getHumanChoice();
-  playRound(computerSelection, humanSelection);
+  const humanSelection = getHumanChoice().toLocaleLowerCase();
+  playRound(humanSelection, computerSelection);
   if (round === 5) {
+    round = 0;
     if (computerScore > humanScore) {
       console.log("Computer win");
     } else if (computerScore < humanScore) {
@@ -53,3 +58,6 @@ const playGame = () => {
   }
   round++;
 };
+for (let i = 0; i < 5; i++) {
+  playGame();
+}
